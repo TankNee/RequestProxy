@@ -1,14 +1,23 @@
 import express from "express";
 import compression from "compression";
 import bodyParser from "body-parser";
-import path from "path";
+import cors from "cors";
 import router from "./routes";
 
 // Create Express Server
 const app = express();
 
 // Configure Express
-app.set("port", 1846);
+app.set("port", 3325);
+app.use(
+	cors({
+		methods: ["GET", "POST", "OPTIONS", "DELETE", "PUT"],
+		allowedHeaders: [
+			"Content-Type",
+			"application/json;charset=utf-8;application/x-www-form-urlencoded",
+		],
+	})
+);
 // Compress request as well as response
 app.use(compression());
 // Parse request as json
